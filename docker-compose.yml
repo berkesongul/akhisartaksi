@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  bandirma-poyraz-taksi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bandirma-poyraz-taksi
+    restart: always
+    ports:
+      - "8081:80"

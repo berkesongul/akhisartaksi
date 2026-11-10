@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --accent: #ffcc00;
+  --accent-dim: rgba(255, 204, 0, 0.12);
+  --accent-glow: rgba(255, 204, 0, 0.22);
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #141419;
+  /* zinc-950 */
+  color: #f4f4f5;
+  /* zinc-100 */
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ── Glass / Blur cards ─────────────────────── */
+.glass-card {
+  background: rgba(24, 24, 27, 0.5);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(63, 63, 70, 0.4);
+}
+
+/* ── Gradient text ──────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #ffcc00 0%, #ffe066 60%, #ffd700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Accent glow ─────────────────────────────── */
+.accent-glow {
+  box-shadow: 0 0 32px rgba(255, 204, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.accent-glow-sm {
+  box-shadow: 0 0 16px rgba(255, 204, 0, 0.15);
+}
+
+/* ── Pulse animation for CTA ─────────────────── */
+@keyframes pulse-accent {
+
+  0%,
+  100% {
+    box-shadow: 0 0 32px rgba(255, 204, 0, 0.2), 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  50% {
+    box-shadow: 0 0 56px rgba(255, 204, 0, 0.35), 0 12px 48px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.pulse-cta {
+  animation: pulse-accent 3s ease-in-out infinite;
+}
+
+/* ── Massive Section layout ──────────────────── */
+.section-wrapper {
+  width: 100%;
+  padding: 160px 0;
+  /* Huge vertical breathing room (py-40 equivalent) */
+}
+
+.section-wrapper--alt {
+  background: #0c0c0f;
+}
+
+.container {
+  max-width: 1280px;
+  /* max-w-7xl */
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* ── Section header ──────────────────────────── */
+.section-header {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.section-header p {
+  text-align: center !important;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+}
+
+/* ── Eyebrow badge ───────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(255, 204, 0, 0.22);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Card hover ──────────────────────────────── */
+.card-hover {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  border-color: rgba(63, 63, 70, 0.8);
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Divider ─────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(63, 63, 70, 0.6), transparent);
+}
+
+/* ── Stars ───────────────────────────────────── */
+.star-filled {
+  color: var(--accent);
+  fill: var(--accent);
+}
+
+/* ── Tag chip ────────────────────────────────── */
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: rgba(39, 39, 42, 0.4);
+  border: 1px solid rgba(63, 63, 70, 0.5);
+  border-radius: 999px;
+  color: #a1a1aa;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.tag-chip:hover {
+  background: var(--accent-dim);
+  border-color: rgba(255, 204, 0, 0.3);
+  color: var(--accent);
+}
+
+/* ── Mobile sticky CTA ───────────────────────── */
+.mobile-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 16px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  background: rgba(9, 9, 11, 0.96);
+  backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(63, 63, 70, 0.4);
+}
+
+@media (min-width: 768px) {
+  .mobile-cta-bar {
+    display: none;
+  }
+}
+
+/* ── Google Translate overrides ──────────────── */
+.goog-te-gadget-simple {
+  background: transparent !important;
+  border: 1px solid rgba(63, 63, 70, 0.4) !important;
+  border-radius: 8px !important;
+  padding: 4px 10px !important;
+  font-size: 12px !important;
+  color: #71717a !important;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+
+.goog-te-gadget-simple:hover {
+  opacity: 1;
+  border-color: rgba(63, 63, 70, 0.8) !important;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value,
+.goog-te-gadget-simple .goog-te-menu-value span {
+  color: #a1a1aa !important;
+}
+
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+/* Hero Mobile Padding Override */
+@media (max-width: 1024px) {
+  #hero {
+    padding-top: 150px !important;
+    align-items: flex-start !important;
+  }
+}
