@@ -1,27 +1,22 @@
-# Stage 1: Build the Next.js app
+# syntax=docker/dockerfile:1
+
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Install dependencies first (leverages caching)
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Copy code and build
 COPY . .
 RUN npm run build
 
-# Stage 2: Serve the static files using Nginx
-FROM nginx:alpine
+FROM nginx:1.27-alpine AS runner
+
+COPY deploy/nginx/container.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/out /usr/share/nginx/html
 
-# Custom nginx config to handle Next.js routing (Clean URLs)
-RUN echo 'server { \
-    listen 80; \
-    location / { \
-    root /usr/share/nginx/html; \
-    try_files $uri $uri.html $uri/ /index.html; \
-    } \
-    }' > /etc/nginx/conf.d/default.conf
-
 EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://127.0.0.1/healthz || exit 1
+
 CMD ["nginx", "-g", "daemon off;"]
